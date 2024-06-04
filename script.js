@@ -25,10 +25,7 @@ const paintSelected = () => {
 
 const scratchCompletedTasks = () => {
   tasksOl.addEventListener('dblclick', (e) => {
-    if (e.target.classList == 'selected') {
-      e.target.classList.remove('selected');
-    }
-    e.target.classList.add('selected');
+    e.target.classList.toggle('completed');
   });
 };
 
