@@ -2,6 +2,7 @@ const newTaskBtn = document.getElementById('criar-tarefa');
 const tasksOl = document.getElementById('lista-tarefas');
 const newTaskInput = document.getElementById('texto-tarefa');
 const deleteAllBtn = document.getElementById('apaga-tudo');
+const deleteCompletedBtn = document.getElementById('remover-finalizados');
 
 newTaskBtn.addEventListener('click', (e) => {
   e.preventDefault();
@@ -27,8 +28,13 @@ tasksOl.addEventListener('dblclick', (e) => {
   e.target.classList.toggle('completed');
 });
 
-
 deleteAllBtn.addEventListener('click', (e) => {
   e.preventDefault();
   tasksOl.innerHTML = '';
-})
+});
+
+deleteCompletedBtn.addEventListener('click', (e) => {
+  e.preventDefault();
+  const completedTasks = document.querySelectorAll('.completed');
+  completedTasks.forEach(task => task.remove());
+});
