@@ -1,6 +1,7 @@
 const newTaskBtn = document.getElementById('criar-tarefa');
 const tasksOl = document.getElementById('lista-tarefas');
 const newTaskInput = document.getElementById('texto-tarefa');
+const deleteAllBtn = document.getElementById('apaga-tudo');
 
 newTaskBtn.addEventListener('click', (e) => {
   e.preventDefault();
@@ -10,24 +11,24 @@ newTaskBtn.addEventListener('click', (e) => {
   newTaskInput.value = '';
 });
 
-const paintSelected = () => {
-  let lastSelected = null;
-  tasksOl.addEventListener('click', (e) => {
-    if (e.target && e.target.nodeName === 'LI') {
-      if (lastSelected) {
-        lastSelected.style.backgroundColor = '';
-      }
-      e.target.style.backgroundColor = 'rgb(128, 128, 128)';
-      lastSelected = e.target;
+let lastSelected = null;
+tasksOl.addEventListener('click', (e) => {
+  if (e.target && e.target.nodeName === 'LI') {
+    if (lastSelected) {
+      lastSelected.style.backgroundColor = '';
     }
-  });
-};
+    e.target.style.backgroundColor = 'rgb(128, 128, 128)';
+    lastSelected = e.target;
+  }
+});
 
-const scratchCompletedTasks = () => {
-  tasksOl.addEventListener('dblclick', (e) => {
-    e.target.classList.toggle('completed');
-  });
-};
+tasksOl.addEventListener('dblclick', (e) => {
+  e.preventDefault()
+  e.target.classList.toggle('completed');
+});
 
-paintSelected();
-scratchCompletedTasks();
+
+deleteAllBtn.addEventListener('click', (e) => {
+  e.preventDefault();
+  tasksOl.innerHTML = '';
+})
